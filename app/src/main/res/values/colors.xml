@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimaryDark">#3262C4</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRed">#C11515</color>
+
+    <color name="colorPrimary">#6200EE</color>
+
+    <color name="colorAccent">#03DAC5</color>
+    <color name="login_wallcolor">#2196F3</color>
+
+    <color name="white_wallpaper">#f5f5f5</color>
+
+    <color name="background_main">#E4F2EF</color>
+    <color name="transparent">#00000000</color>
+    <color name="whiteTransparent">#80ffffff</color>
+    <color name="navy_bottom">#1357BE</color>
+    <color name="gray_bottom">#a9a9a9</color>
+    <color name="beige">#F5F5DC</color>
+    <color name="gold">#FFD700</color>
+    <color name="superlightblue">#BBCDE3</color>
+    <color name="sky_blue">#A196BCFF</color>
+    <color name="highlight">#74a4f3</color>
+    <color name="backgroundColor">#E4F2EF</color>
+
+    <color name="colorItem1Start">#FEBD1B</color>
+    <color name="colorItem1End">#E4A401</color>
+    <color name="red">#FF0000</color>
+    <color name="colorEndBackground">#50FFFFFF</color>
+    <color name="colorLightText">#ECECEC</color>
+
+
+    <color name="g_button">#ECF1FC</color>
+    <color name="g_text_color">#191919</color>
+    <color name="g_background_color">#748ECA</color>
+
+    <color name="example_1_bg">#3A284C</color>
+    <color name="example_1_bg_light">#433254</color>
+    <color name="example_1_white_light">#4DFFFFFF</color>
+    <color name="example_1_white">#D9FFFFFF</color>
+    <color name="example_2_black">#D9000000</color>
+
+    <string-array name="sticker_colors">
+        <item>#FF8882</item>
+        <item>#FBE698</item>
+        <item>#F9F940</item>
+        <item>#A3EBB1</item>
+        <item>#6EDE52</item>
+        <item>#B6E2D3</item>
+        <item>#B1D4E0</item>
+        <item>#2E8BC0</item>
+        <item>#C088F3</item>
+        <item>#C0C9CC</item>
+    </string-array>
+</resources>

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "461863097804",
+    "project_id": "myrestaurant-22659",
+    "storage_bucket": "myrestaurant-22659.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461863097804:android:d5a4b266f3c52c61b03969",
+        "android_client_info": {
+          "package_name": "taekyungkil.mohawk.capstoneproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461863097804-drg24j7t7351gua7cu6nudd3pa94q7ru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBImcODUwDrDbqGSvBZ-q5IEw8Tntdlcag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461863097804-drg24j7t7351gua7cu6nudd3pa94q7ru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461863097804:android:98db8d1147f60597b03969",
+        "android_client_info": {
+          "package_name": "taekyungkil.mohawk.myrestaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461863097804-drg24j7t7351gua7cu6nudd3pa94q7ru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBImcODUwDrDbqGSvBZ-q5IEw8Tntdlcag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461863097804-drg24j7t7351gua7cu6nudd3pa94q7ru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
