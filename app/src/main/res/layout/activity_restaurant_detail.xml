@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    tools:context=".RestaurantDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/detail_img"
+            android:layout_weight="2"/>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TITLE"
+                    android:textSize="24sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/detail_name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5/5"
+                    android:layout_toEndOf="@+id/detail_name"
+                    android:layout_marginStart="30dp"
+                    android:layout_alignBaseline="@+id/detail_name"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/detail_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detail_name"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/red"
+                    android:text="Available"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/detail_available"
+                    android:text="15/20"
+                    android:textSize="16sp"
+                    android:id="@+id/detail_available_count"
+                    android:layout_alignBaseline="@+id/detail_available"
+                    android:layout_marginStart="30dp"/>
+
+            </RelativeLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_check_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="20dp"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:contentDescription="TODO"
+                />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:background="#fff"
+        android:id="@+id/nav_view"
+        app:menu="@menu/drawer_menu"
+        app:headerLayout="@layout/drawer_header"
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

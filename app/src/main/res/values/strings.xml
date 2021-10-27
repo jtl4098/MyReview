@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CapstoneProject</string>
+    <string name="open">\"Drawer Is Open\"</string>
+    <string name="close">Drawer Is Closed</string>
 </resources>
