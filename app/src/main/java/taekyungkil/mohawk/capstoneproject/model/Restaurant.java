@@ -13,6 +13,8 @@ public class Restaurant implements Parcelable {
     @SerializedName("name")
     private String name;
     private boolean isAvailable;
+
+    @SerializedName("rating")
     private double rating;
 
     @SerializedName("current_seat")
@@ -23,8 +25,11 @@ public class Restaurant implements Parcelable {
     @SerializedName("img_url")
     private String img_url;
 
-    @SerializedName("owner_Id")
+    @SerializedName("owner_id")
     private int owner_Id;
+
+    @SerializedName("address")
+    private String address;
 
     public Restaurant(int restaurant_id, String name, boolean isAvailable, double rating, int current_seat, int max_seat) {
         this.restaurant_id = restaurant_id;
@@ -35,7 +40,26 @@ public class Restaurant implements Parcelable {
         this.max_seat = max_seat;
     }
 
+    public Restaurant(String name, double rating, int current_seat, int max_seat, String img_url, int owner_Id, String address) {
+        this.name = name;
+
+        this.rating = rating;
+        this.current_seat = current_seat;
+        this.max_seat = max_seat;
+        this.img_url = img_url;
+        this.owner_Id = owner_Id;
+        this.address = address;
+    }
+
     public Restaurant() {
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     protected Restaurant(Parcel in) {
@@ -47,6 +71,7 @@ public class Restaurant implements Parcelable {
         max_seat = in.readInt();
         img_url = in.readString();
         owner_Id = in.readInt();
+        address = in.readString();
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -140,5 +165,6 @@ public class Restaurant implements Parcelable {
         parcel.writeInt(max_seat);
         parcel.writeString(img_url);
         parcel.writeInt(owner_Id);
+        parcel.writeString(address);
     }
 }

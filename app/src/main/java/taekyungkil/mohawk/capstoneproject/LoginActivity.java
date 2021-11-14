@@ -16,6 +16,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import taekyungkil.mohawk.capstoneproject.model.User;
+
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText username_login, password_login;
 
@@ -53,8 +58,37 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
+
+
+                        PlaceholderAPI service = RetrofitClientInstance.getRetrofitInstance().create(PlaceholderAPI.class);
+                        Call<User> call = service.getUser(username);
+                        call.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                User user = response.body();
+                                //Log.d("result User", Boolean.toString(user.isOwner()));
+                                Log.d("result User", Integer.toString(user.isOwner()));
+
+                                if(user.isOwner() == 1){
+                                   // if(user.getRestaurantId() == null){
+                                        Intent intent = new Intent(LoginActivity.this, CreateRestaurantActivity.class);
+                                        intent.putExtra("user",user);
+                                        startActivity(intent);
+                                   // }
+
+                                }else{
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                            }
+                        });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

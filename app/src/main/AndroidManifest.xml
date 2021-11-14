@@ -13,6 +13,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CreateRestaurantActivity"
+            android:exported="true" />
+        <activity
             android:name=".RestaurantDetailActivity"
             android:exported="true" />
         <activity
