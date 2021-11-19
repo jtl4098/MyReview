@@ -1,6 +1,7 @@
 package taekyungkil.mohawk.capstoneproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import taekyungkil.mohawk.capstoneproject.model.Restaurant;
 import taekyungkil.mohawk.capstoneproject.model.User;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        ActionBar myActionBar = getSupportActionBar();
+        myActionBar.hide();
         username_login = findViewById(R.id.username_login);
         password_login = findViewById(R.id.password_login);
 
@@ -70,14 +73,36 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d("result User", Integer.toString(user.isOwner()));
 
                                 if(user.isOwner() == 1){
+                                    Call<Restaurant> call2 = service.getRestaurantByUser(Integer.parseInt(user.getId()));
+                                    call2.enqueue(new Callback<Restaurant>() {
+                                        @Override
+                                        public void onResponse(Call<Restaurant> call, Response<Restaurant> response) {
+                                            Restaurant restaurant = response.body();
+                                            Log.d("Login rest", restaurant.getName());
+                                            if(restaurant != null){
+
+                                                Intent intent = new Intent(LoginActivity.this, ManagementActivity.class);
+                                                intent.putExtra("user",user);
+                                                intent.putExtra("restaurant", restaurant);
+                                                startActivity(intent);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Restaurant> call, Throwable t) {
+                                            Intent intent = new Intent(LoginActivity.this, CreateRestaurantActivity.class);
+                                            intent.putExtra("user",user);
+                                            startActivity(intent);
+                                        }
+                                    });
                                    // if(user.getRestaurantId() == null){
-                                        Intent intent = new Intent(LoginActivity.this, CreateRestaurantActivity.class);
-                                        intent.putExtra("user",user);
-                                        startActivity(intent);
+
                                    // }
 
                                 }else{
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    intent.putExtra("user",user);
+
                                     startActivity(intent);
                                 }
 

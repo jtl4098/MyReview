@@ -1,59 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
-    android:padding="10dp">
+    app:cardCornerRadius="10dp"
+    android:elevation="10dp"
+    android:layout_marginTop="20dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        >
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/food"
+            android:id="@+id/image"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="20sp"
+            android:id="@+id/title"
+            android:layout_toEndOf="@+id/image"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rating"
+            android:textSize="16sp"
+            android:id="@+id/rating"
+            android:layout_below="@+id/title"
+            android:layout_toEndOf="@+id/image"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            />
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/food"
-        android:id="@+id/image"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="20sp"
-        android:id="@+id/title"
-        android:layout_toEndOf="@+id/image"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rating"
-        android:textSize="16sp"
-        android:id="@+id/rating"
-        android:layout_below="@+id/title"
-        android:layout_toEndOf="@+id/image"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        />
+        <TextView
+            android:id="@+id/isAvailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rating"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/image"
+            android:text="Available"
+            android:textColor="@color/sky_blue"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/isAvailable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rating"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@+id/image"
-        android:text="Available"
-        android:textColor="@color/sky_blue"
-        android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20/20"
+            android:textSize="16sp"
+            android:id="@+id/isAvailable_count"
+            android:layout_below="@+id/isAvailable"
+            android:layout_toEndOf="@+id/image"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            />
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="20/20"
-        android:textSize="16sp"
-        android:id="@+id/isAvailable_count"
-        android:layout_below="@+id/rating"
-        android:layout_toEndOf="@+id/isAvailable"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        />
-</RelativeLayout>
+
+</androidx.cardview.widget.CardView>

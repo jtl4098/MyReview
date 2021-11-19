@@ -30,7 +30,7 @@ import taekyungkil.mohawk.capstoneproject.model.User;
 
 public class CreateRestaurantActivity extends AppCompatActivity {
 
-    private TextInputEditText name, max, postal;
+    private TextInputEditText name, max, postal, number;
     private MaterialButton img;
     private Button submit;
     ProgressBar progressBar;
@@ -50,6 +50,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
         postal = findViewById(R.id.address_create);
         img = findViewById(R.id.select_img_create);
         submit = findViewById(R.id.btn_register_create);
+        number =findViewById(R.id.number_create);
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         user = getIntent().getParcelableExtra("user");
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -64,6 +65,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                submit.setClickable(false);
                 if(resultData == null){
                     Toast.makeText(CreateRestaurantActivity.this, "Please Select an Restaurant Image", Toast.LENGTH_SHORT).show();
                     return;
@@ -80,6 +82,18 @@ public class CreateRestaurantActivity extends AppCompatActivity {
                     Toast.makeText(CreateRestaurantActivity.this, "Please Enter Username", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(number.getText().toString().equals("")){
+                    Toast.makeText(CreateRestaurantActivity.this, "Please Enter Contact Number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(number.getText().toString().contains("-") || number.getText().toString().contains("(") || number.getText().toString().contains(")")){
+                    Toast.makeText(CreateRestaurantActivity.this, "Please Enter this format. 6476715840 ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(postal.getText().toString().contains("-") || postal.getText().toString().contains(" ") || postal.getText().toString().contains(")")){
+                    Toast.makeText(CreateRestaurantActivity.this, "Please Enter this format. L8S2X5 ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 StorageReference reference;
                 reference = mStorageReference.child("uploads/restaurant/img/"+name.getText().toString());
                 reference.putFile(resultData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -90,12 +104,15 @@ public class CreateRestaurantActivity extends AppCompatActivity {
                         Uri url = uri.getResult();
 
                         Restaurant restaurant = new Restaurant(name.getText().toString(),0, 0, Integer.parseInt(max.getText().toString()),url.toString() ,Integer.parseInt(user.getId()),postal.getText().toString());
+                        restaurant.setContact_number(number.getText().toString());
                         PlaceholderAPI service = RetrofitClientInstance.getRetrofitInstance().create(PlaceholderAPI.class);
                         Call<Restaurant> call = service.postRestaurant(restaurant);
                         call.enqueue(new Callback<Restaurant>() {
                             @Override
                             public void onResponse(Call<Restaurant> call, Response<Restaurant> response) {
                                 Log.d("RESPONSE", Integer.toString(response.body().getRestaurant_id()));
+                                Toast.makeText(CreateRestaurantActivity.this, "Please Re-login ", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
 
                             @Override

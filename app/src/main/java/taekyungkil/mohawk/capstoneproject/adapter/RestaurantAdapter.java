@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,19 +15,54 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import taekyungkil.mohawk.capstoneproject.R;
 import taekyungkil.mohawk.capstoneproject.model.Restaurant;
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder>  {
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> implements Filterable {
 
 
     private ArrayList<Restaurant> restaurants;
+    private ArrayList<Restaurant> filtered;
 
     private static ClickListener clickListener;
     public void setOnItemClickListener(ClickListener clickListener) {
         RestaurantAdapter.clickListener = clickListener;
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            filtered = new ArrayList<>();
+            if(charSequence == null || charSequence.length() == 0){
+                filtered.addAll(restaurants);
+
+            }else{
+                String filterPathhern = charSequence.toString().toLowerCase().trim();
+                for(Restaurant item : restaurants){
+                    if(item.getName().toLowerCase().contains(filterPathhern)){
+                        filtered.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filtered;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            restaurants.clear();
+            restaurants.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public interface ClickListener {
         void onItemClick(int position, View v);
@@ -72,6 +109,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
         if(restaurant.getMax_seat() - restaurant.getCurrent_seat() <= 0 ){
             holder.isAvailable.setTextColor(Color.RED);
+            holder.isAvailable.setText("Unavailable");
         }
         holder.rating.setText(Double.toString(restaurant.getRating()));
 

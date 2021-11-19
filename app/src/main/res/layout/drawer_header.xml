@@ -3,24 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#5cd031"
+    android:background="#1A2E77"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/ic_baseline_rate_review_24" />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MyReview"
-        android:textSize="20sp"
-        tools:text="MyCourse"
-        android:textColor="#fff"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_margin="10dp"
+        app:srcCompat="@drawable/ic_baseline_rate_review_color_24" />
+
 
 
 </LinearLayout>

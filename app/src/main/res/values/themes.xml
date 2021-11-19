@@ -9,12 +9,19 @@
         <!--        <item name="android:windowContentTransitions">true</item>-->
     </style>
 
-    <style name="AppThemeNoActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="AppThemeNoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
+        <!--        <item name="android:windowContentTransitions">true</item>-->
+    </style>
 
 </resources>

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -15,8 +17,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import taekyungkil.mohawk.capstoneproject.adapter.RestaurantAdapter;
 import taekyungkil.mohawk.capstoneproject.model.Restaurant;
+import taekyungkil.mohawk.capstoneproject.model.User;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -37,14 +42,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private RestaurantAdapter adapter;
     private ArrayList<Restaurant> restaurants;
     private RecyclerView recyclerView;
+
+    private User user;
+    private SearchView home_searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        user = getIntent().getParcelableExtra("user");
         myDrawer = (DrawerLayout)
                 findViewById(R.id.drawer_layout);
         myActionBar = getSupportActionBar();
+
 
         myActionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -59,6 +68,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         myNavView.setNavigationItemSelectedListener(this);
 
         //setUpComponent();
+        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+
     }
 
     @Override
@@ -74,12 +85,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         adapter = new RestaurantAdapter(restaurants);
         recyclerView.setAdapter(adapter);
 
+
+        home_searchView = findViewById(R.id.home_searchView);
+        home_searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         adapter.setOnItemClickListener(new RestaurantAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 Log.d("Clicked ", "YES");
                 Intent intent = new Intent(HomeActivity.this, RestaurantDetailActivity.class);
                 intent.putExtra("restaurant", restaurants.get(position));
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
@@ -115,12 +141,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         myDrawer.closeDrawers();
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent intent2 = new Intent(HomeActivity.this, HomeActivity.class);
-                startActivity(intent2);
+//                Intent intent2 = new Intent(HomeActivity.this, HomeActivity.class);
+//                intent2.putExtra("user", user);
+//                startActivity(intent2);
 
                 break;
             case R.id.nav_fav:
                 Intent intent = new Intent(HomeActivity.this, MyReviewActivity.class);
+                intent.putExtra("user", user);
                 startActivity(intent);
 
                 break;

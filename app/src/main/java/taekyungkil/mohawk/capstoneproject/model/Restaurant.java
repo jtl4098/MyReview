@@ -31,6 +31,14 @@ public class Restaurant implements Parcelable {
     @SerializedName("address")
     private String address;
 
+    private String contact_number;
+
+    @SerializedName("long")
+    private float lng;
+
+    @SerializedName("lat")
+    private float lat;
+
     public Restaurant(int restaurant_id, String name, boolean isAvailable, double rating, int current_seat, int max_seat) {
         this.restaurant_id = restaurant_id;
         this.name = name;
@@ -54,6 +62,14 @@ public class Restaurant implements Parcelable {
     public Restaurant() {
     }
 
+    public String getContact_number() {
+        return contact_number;
+    }
+
+    public void setContact_number(String contact_number) {
+        this.contact_number = contact_number;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -72,6 +88,25 @@ public class Restaurant implements Parcelable {
         img_url = in.readString();
         owner_Id = in.readInt();
         address = in.readString();
+        contact_number = in.readString();
+        lat = in.readFloat();
+        lng = in.readFloat();
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -166,5 +201,8 @@ public class Restaurant implements Parcelable {
         parcel.writeString(img_url);
         parcel.writeInt(owner_Id);
         parcel.writeString(address);
+        parcel.writeString(contact_number);
+        parcel.writeFloat(lng);
+        parcel.writeFloat(lat);
     }
 }
